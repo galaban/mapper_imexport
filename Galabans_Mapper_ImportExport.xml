@@ -154,6 +154,13 @@ function export_cexits_for_galaban(name, line, wildcards, styles)
     local filename = ""
     if (wildcards[1] ~= nil and wildcards[1] ~= "") then
         filename = sanitize_filename(Trim(wildcards[1]))
+        
+        local namelen = string.len(filename)
+        -- oddly, -3 gets us the last 4 chars...
+        if (namelen < 5 or (string.sub(filename, namelen-3) ~= ".csv")) then
+            filename = filename..".csv"
+        end
+
     end
     
     if (filename == "") then
@@ -164,7 +171,7 @@ function export_cexits_for_galaban(name, line, wildcards, styles)
 
     ------------------------
     -- 2:  Open the files (database/csv), to make sure we can
-    filename = filename..".csv"
+    --filename = filename..".csv"
 
     local fullpath = GetInfo(66)..filename
 
@@ -335,7 +342,7 @@ end
 -- Utility Functions
 --------------------
 function sanitize_filename(str)
-   str = string.gsub(str, "[^%w%s()_-]", "")
+   str = string.gsub(str, "[^%w%s()_-%.]", "")
    return Trim(str)
 end
 
