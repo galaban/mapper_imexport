@@ -8,7 +8,7 @@ The format of this plugin is:
 
 This outputs a .csv file into the same directory as the mapper database.  To import a file, you must place the file in the same directory as the mapper database and specify the file name only.  For example:
 
-    mapper export outdata
+    mapper export outdata.csv
 
 This will create a new file called "outdata.csv".
 
